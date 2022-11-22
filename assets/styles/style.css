@@ -7,10 +7,9 @@ html{
 
 .box{
     margin-left: 30px;
-    margin-top: 20px;
+    margin-top: 5%;
     margin-right: 30px;
     font-weight: bold;
-
 }
 
 .city-name {
@@ -48,3 +47,22 @@ html{
     margin-right: auto;
     width: 30%;
 }
+
+.float-right{
+    float: right;
+}
+
+.float-left{
+    float: left;
+    font-weight: bolder;
+}
+
+
+.conditions{
+
+}
+
+.clothes {
+
+}
+
