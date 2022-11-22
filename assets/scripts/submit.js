@@ -3,7 +3,7 @@ $(document).ready(function (){
     var startTime = localStorage.getItem(1);
     var endTime = localStorage.getItem(2);
 
-    if(localStorage.length == 0){
+    if(localStorage.length == 0 || localStorage.getItem(0) == null){
         window.location.href = "index.html"
     }
 
