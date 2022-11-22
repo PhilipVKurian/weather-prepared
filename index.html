@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Weather Prepared</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <link href="./assets/styles/style.css" rel="stylesheet">
+    </head>
+    <body> 
+        <div class="hero"></div>
+        <main>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Prepared</title>
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
-    <link href="https://api.weatherstack.com/current">
-    <link rel="stylesheet" href="style.css">
-</head>
+            <div id="site-intro">
+                <div class="box">
+                    <h2>Please take some time to set up the information Below</h2>
+                    <p>predictions are based on weather data gathered from openweathermap.com</p>
+                </div> 
 
-<body>
-    <div class="container-fluid">
-        <section class="main">
-          <section class="inputs">
-            <input type="text" placeholder="Enter any city..." id="cityinput">
-            <input type="submit" value="Submit" id="add">
-            <button placeholder="submit" id="add"></button>
-          </section>
-          <section class="display">
-            <div class="wrapper">
-              <h2 id="cityoutput"></h2>
-              <p id="description"></p>
-              <p id="temp"></p>
-              <p id="wind"></p>
+                <input class="input is-rounded city-name" type="text" placeholder="City Name">
+
+                <div class="times">
+                    <div id="start-time"><input class="input is-primary" type="time" placeholder="Primary input"></div>
+                    <div id="end-time"><input class="input is-primary" type="time" placeholder="Primary input"></div>
+                </div>
+
+                <button class="button is-info is-light submit">Submit</button>
             </div>
-          </section>
-        </section>
-    <form id="form">
-        <input type="text" id="search" placeholder="Search By Loaction" autocomplete="off">
-    </form>
-    <main id="main">
-    </main>
- <script src="app.js"></script>
-    </div>
-  </body>
-
-  </html>
+        </main>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" 
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" 
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+        crossorigin="anonymous"></script>
+        <script src="./assets/scripts/script.js"></script>
+    </body>
+</html>
