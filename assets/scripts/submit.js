@@ -76,3 +76,4 @@ function umbrellaSuggestion(item){
          <img src="./assets/image/umbrella-color.png" alt="umbrella"> `
     }
 }
+});
