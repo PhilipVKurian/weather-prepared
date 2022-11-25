@@ -39,7 +39,7 @@ $(document).ready(function (){
                     console.log(temps, windSpeeds, conditions);
                     const averageTemp=temps.reduce((a,b)=>a+b,0)/temps.length;
                     clothingSuggestion(averageTemp);
-                    // umbrellaSuggestion(conditions);
+                    toolSuggestion(conditions,windSpeeds);
                 })
             }
         }) 
@@ -57,7 +57,7 @@ $(document).ready(function (){
         })
     };
 
-    // display clothing suggestions
+    // display clothing suggestions based on temperature
     function clothingSuggestion(averageTemp){
         if(averageTemp>=25){
             document.querySelector("#clothes").innerHTML=
@@ -85,7 +85,7 @@ $(document).ready(function (){
             `<div class="list-item-group"> 
             <img src="./assets/image/jacket.png" alt="jacket">
             <img src="./assets/image/hoodie.png" alt="hoodie">
-            <img src="./assets/image/trousers-warm.png" alt="trousers">
+            <img src="./assets/image/trousers_warm_blue.png" alt="trousers">
             <img src="./assets/image/boot-yellow.png" alt="boots">
             </div>`;
         }else{
@@ -93,7 +93,7 @@ $(document).ready(function (){
             `<div class="list-item-group"> 
             <img src="./assets/image/coat-gray.png" alt="coat">
             <img src="./assets/image/sweater.png" alt="sweater">
-            <img src="./assets/image/trousers-warm.png" alt="trousers">
+            <img src="./assets/image/trousers_warm_blue.png" alt="trousers">
             <img src="./assets/image/scarf-blue.png" alt="scarf">
             <img src="./assets/image/winter-hat-pink.png" alt="hat">
             <img src="./assets/image/boot-yellow.png" alt="boots">
@@ -102,16 +102,35 @@ $(document).ready(function (){
     }
 
    
-    // umbrella is added when it's raining and not strong wind; when wind is also strong, raincoat is added
-    // function umbrellaSuggestion(condition){
-    //     let umbrella= condition.search("rain");
-    //     console.log(umbrella);
-    //     if(umbrella){
-    //         document.querySelector("#clothes").innerHTML+=
-    //         `<img src="./assets/image/raincoat-yellow.png" alt="raincoat">
-    //         <img src="./assets/image/umbrella-color.png" alt="umbrella"> `
-    //     }
-        
-    // }
+    // umbrella is added when it's raining and not windy; 
+    // raincoat is added when it's raining and windy (>20mph is windy );
+    // windcoat is added when it's not raining and windy
+    function toolSuggestion(condition,wind){
+        let rain;
+        let windy;
+        for(let i=0; i<condition.length; i++){
+            rain=condition[i].includes("rain");
+            if(rain){
+                break;
+            }
+        }
+        for(let i=0; i<wind.length; i++){
+            windy=wind[i]>20;
+            if(windy){
+                break;
+            }
+        }
+
+        if(rain ==true && windy ==false){
+            document.querySelector("#clothes").innerHTML+=
+            `<img src="./assets/image/umbrella-color.png" alt="umbrella"> `
+        }else if(rain ==true && windy ==true){
+            document.querySelector("#clothes").innerHTML+=
+            `<img src="./assets/image/raincoat-yellow.png" alt="raincoat">`
+        }else if(rain ==false && windy ==true){
+            document.querySelector("#clothes").innerHTML+=
+            `<img src="./assets/image/windcoat.png" alt="windcoat">`
+        }
+    }
 
 });
