@@ -37,13 +37,18 @@ $(document).ready(function (){
                         }                        
                     }
                     console.log(temps, windSpeeds, conditions);
+                    const averageTemp=temps.reduce((a,b)=>a+b,0)/temps.length;
+                    clothingSuggestion(averageTemp);
+                    // umbrellaSuggestion(conditions);
                 })
             }
         }) 
     };
 
+    displayWeatherAlert (cityName);
+
     function displayWeatherAlert (n){
-        weatherAlertUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=43.7001&lon=-79.4163&exclude=hourly,daily&appid=a0bbd7e7d2d686d902e4b6b8ef49689e"
+        weatherAlertUrl = "http://api.weatherapi.com/v1/forecast.json?key=d196a469c95d42e3baf10404222511&q=Toronto&days=7&aqi=yes&alerts=yes"
         fetch(weatherAlertUrl).then(function(response){
             if (response.ok){
                 response.json().then(function(data){
@@ -54,9 +59,9 @@ $(document).ready(function (){
         })
     };
 
-
-    function clothingSuggestion(item){
-        if(item.mian.temp>=25){
+    // display clothing suggestions
+    function clothingSuggestion(averageTemp){
+        if(averageTemp>=25){
             document.querySelector("#clothes").innerHTML=
             `<div class="list-item-group"> 
             <img src="./assets/image/t-shirt-blue.png" alt="shirt">
@@ -64,20 +69,20 @@ $(document).ready(function (){
             <img src="./assets/image/sunglass.png" alt="sunglass">
             <p> Hot, drink enough water to avoid dehydration </p>
             </div>`;
-        }else if(item.main.temp>=20 && item.main.temp<25){
+        }else if(averageTemp>=20 && averageTemp<25){
             document.querySelector("#clothes").innerHTML=
             `<div class="list-item-group"> 
-            <i class="fa-solid fa-shirt fa-4x"></i>
+            <img src="./assets/image/t-shirt-blue.png" alt="shirt">
             <img src="./assets/image/trousers-grey.png" alt="trousers">
             </div>`;
-        }else if(item.main.temp>=10 && item.main.temp<20){
+        }else if(averageTemp>=10 && averageTemp<20){
             document.querySelector("#clothes").innerHTML=
             `<div class="list-item-group"> 
             <img src="./assets/image/denim-jacket.png" alt="jacket">
             <img src="./assets/image/long-sleeve-color.png" alt="long sleeve">
             <img src="./assets/image/trousers-grey.png" alt="trousers">
             </div>`;
-        }else if(item.main.temp>0 && item.main.temp<10){
+        }else if(averageTemp>=0 && averageTemp<10){
             document.querySelector("#clothes").innerHTML=
             `<div class="list-item-group"> 
             <img src="./assets/image/jacket.png" alt="jacket">
@@ -98,12 +103,17 @@ $(document).ready(function (){
         }
     }
 
-    function umbrellaSuggestion(item){
-        if(item.weather[0].main=rain){
-            document.querySelector("#clothes").innerHTML+=
-            `<img src="./assets/image/raincoat-yellow.png" alt="raincoat">
-            <img src="./assets/image/umbrella-color.png" alt="umbrella"> `
-        }
-    }
+   
+    // umbrella is added when it's raining and not strong wind; when wind is also strong, raincoat is added
+    // function umbrellaSuggestion(condition){
+    //     let umbrella= condition.search("rain");
+    //     console.log(umbrella);
+    //     if(umbrella){
+    //         document.querySelector("#clothes").innerHTML+=
+    //         `<img src="./assets/image/raincoat-yellow.png" alt="raincoat">
+    //         <img src="./assets/image/umbrella-color.png" alt="umbrella"> `
+    //     }
+        
+    // }
 
 });
