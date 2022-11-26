@@ -13,12 +13,13 @@ $(document).ready(function (){
     var temps = [];
     var windSpeeds = [];
     var conditions = [];
-
+    var times = [];
+    var icons = []
 
 
     //Display City and Start Time 
-    $('.conditions').find('h2').text(cityName);
-    $('.conditions').find('p').text(startTime+ " -> " +endTime);
+    $('.conditions').find('.city-name').text(cityName);
+    $('.conditions').find('start-end').text(startTime+ " -> " +endTime);
 
     displayWeather(cityName);
 
@@ -34,19 +35,28 @@ $(document).ready(function (){
                             conditions.push(data.list[i].weather[0].description);
                             windSpeeds.push(data.list[i].wind.speed);
                             temps.push(data.list[i].main.temp);
+                            times.push(arrayTime);
+                            icons.push(data.list[i].weather[0].icon);
                         }                        
                     }
-                    console.log(temps, windSpeeds, conditions);
+                    console.log(temps, windSpeeds, conditions,icons,times);
                     const averageTemp=temps.reduce((a,b)=>a+b,0)/temps.length;
                     clothingSuggestion(averageTemp);
+<<<<<<< HEAD
                     toolSuggestion(conditions,windSpeeds);
+=======
+                    // umbrellaSuggestion(conditions);
+                    getConditions(conditions, icons, times);
+>>>>>>> ff0228b3d36c663f1458643649cdcf86903082ed
                 })
             }
         }) 
     };
 
+    displayWeatherAlert (cityName);
+
     function displayWeatherAlert (n){
-        weatherAlertUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=43.7001&lon=-79.4163&exclude=hourly,daily&appid=a0bbd7e7d2d686d902e4b6b8ef49689e"
+        weatherAlertUrl = "http://api.weatherapi.com/v1/forecast.json?key=d196a469c95d42e3baf10404222511&q="+n+"&days=7&aqi=yes&alerts=yes"
         fetch(weatherAlertUrl).then(function(response){
             if (response.ok){
                 response.json().then(function(data){
@@ -132,5 +142,41 @@ $(document).ready(function (){
             `<img src="./assets/image/windcoat.png" alt="windcoat">`
         }
     }
+
+    function getConditions(conditions,icons,times){
+        for (i = 0; i < conditions.length; i++){
+            var isPM;
+
+            if (times[i] > 12){
+                isPM = times[i] + ":00 PM";
+            }else{
+                isPM = times[i] + ":00 AM";
+            }
+            
+            $('.displayed-conditions').append(
+                `<div class="card card-created">
+                </header>
+                <button class="card-header-icon dropdown is-hoverable" aria-label="more options">
+                    <img src="http://openweathermap.org/img/wn/`+ icons[i] +`@2x.png"></img>
+                    <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                        <div class="dropdown-content">
+                        <div class="dropdown-item">
+                            <p>Condition: `+conditions[i]+`</p>
+                            <p>Time: `+isPM+`</p>                            
+                        </div>
+                        </div>
+                    </div>
+                </button>
+                </div>` 
+            );
+            
+        }
+    }
+
+    $('.submit').click(function() {
+        localStorage.clear();
+        location.href = 'index.html';
+
+    })
 
 });
