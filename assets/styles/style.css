@@ -6,7 +6,7 @@ html{
 }
 .hero {
     object-fit: cover;
-    height: 300px;    
+    height: 250px;    
     background:url("https://ca-times.brightspotcdn.com/dims4/default/25e1c0c/2147483647/strip/true/crop/5184x3456+0+0/resize/1200x800!/quality/80/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F9e%2Faf%2F0d8ec73b408ba1fde362ef73570d%2F459362-et-0717-johnson-mwy-0066.JPG");
 }
 
@@ -85,6 +85,10 @@ html{
 img{ 
     width: 2cm;
     height: 2cm;
+}
+
+.site-intro{
+    padding-bottom: 10%;
 }
 
 @media (max-width:481px)  {
