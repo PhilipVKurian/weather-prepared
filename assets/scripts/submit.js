@@ -42,12 +42,10 @@ $(document).ready(function (){
                     console.log(temps, windSpeeds, conditions,icons,times);
                     const averageTemp=temps.reduce((a,b)=>a+b,0)/temps.length;
                     clothingSuggestion(averageTemp);
-<<<<<<< HEAD
                     toolSuggestion(conditions,windSpeeds);
-=======
                     // umbrellaSuggestion(conditions);
                     getConditions(conditions, icons, times);
->>>>>>> ff0228b3d36c663f1458643649cdcf86903082ed
+
                 })
             }
         }) 
