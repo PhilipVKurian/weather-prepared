@@ -81,7 +81,6 @@ html{
     flex-direction: row;
     flex-wrap: wrap;
 }
-
 img{ 
     width: 2cm;
     height: 2cm;
@@ -99,14 +98,38 @@ img{
     #start-text{
         display: none;
     }
-
-
 }
 
 @media (max-width:350px)  {
     
     .icon{
         display: none;
+    }
+    /*footer*/
+    ul {
+        margin: 0px;
+        padding: 0px;
+    }
+    .footer-section {
+      background: #151414;
+      position: relative;
+    }
+    
+    .footer-content {
+      position: relative;
+      z-index: 2;
+    }
+    .copyright-area{
+      background: #0f0d0d;
+      padding: 25px 0;
+    }
+    .copyright-text p {
+      margin: 0;
+      font-size: 14px;
+      color: #150d0d;
+    }
+    .copyright-text p a{
+      color: #4b2412;
     }
 
 }
