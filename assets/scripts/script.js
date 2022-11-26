@@ -8,16 +8,10 @@ $(document).ready(function (){
         window.location.href = "higher.html";        
     }
 
-    function checkCity (n,s,e){
-        console.log(s.length);
-        valid = getResponseStatus(n,s,e);   
-    };
-
     function getResponseStatus(n,s,e){        
         weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q="+n+"&units=metric&appid=ee1d180c5b424d260ddb1d1ce6058778";
         fetch(weatherUrl).then(function(response){
             if (response.ok && s && e){
-                console.log("confirmed in fetch");
                 response.json().then(function(data){
                     localStorage.setItem(0 , n);
                     localStorage.setItem(1, s);
@@ -25,7 +19,6 @@ $(document).ready(function (){
                     window.location.href = "higher.html";
                 })
             } else {
-                console.log("failed fetch");
                 displayModal(); 
             }
         })
@@ -46,6 +39,6 @@ $(document).ready(function (){
         cityName = $('.city-name').val();
         startTime = $('.start-time').val();
         endTime = $('.end-time').val();
-        checkCity(cityName, startTime, endTime);
+        getResponseStatus(cityName, startTime, endTime);
     })
 });
