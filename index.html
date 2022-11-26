@@ -6,6 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Weather Prepared</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <script src="https://kit.fontawesome.com/411e09558c.js" crossorigin="anonymous"></script>
         <link href="./assets/styles/style.css" rel="stylesheet">
     </head>
     <body> 
@@ -35,8 +36,16 @@
                 <input class="input is-rounded city-name" type="text" placeholder="City Name">
 
                 <div class="times">
+                    <span id="start-text">Shift Start</span>
+                    <span class="icon">
+                        <i class="fa-regular fa-clock"></i>
+                    </span>                      
                     <div id="start-time"><input class="input is-primary start-time" type="time" placeholder="Primary input"></div>
                     <div id="end-time"><input class="input is-primary end-time" type="time" placeholder="Primary input"></div>
+                    <span class="icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </span>
+                      <span id="end-text">End Shift</span>
                 </div>
 
                 <button class="button is-info is-light submit">Submit</button>
@@ -45,6 +54,7 @@
         <script src="https://code.jquery.com/jquery-3.6.1.min.js" 
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" 
         crossorigin="anonymous"></script>
+
         <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
         integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
         crossorigin="anonymous"></script>

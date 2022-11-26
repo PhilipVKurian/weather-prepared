@@ -4,10 +4,15 @@ html{
     width: 100%;
     background: linear-gradient(to right, rgba(38, 80, 78, 0.747), rgb(39, 91, 121));
 }
+.hero {
+    object-fit: cover;
+    height: 300px;    
+    background:url("https://ca-times.brightspotcdn.com/dims4/default/25e1c0c/2147483647/strip/true/crop/5184x3456+0+0/resize/1200x800!/quality/80/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F9e%2Faf%2F0d8ec73b408ba1fde362ef73570d%2F459362-et-0717-johnson-mwy-0066.JPG");
+}
 
 .box{
     margin-left: 30px;
-    margin-top: 5%;
+    /* margin-top: 5%; */
     margin-right: 30px;
     font-weight: bold;
 }
@@ -28,8 +33,13 @@ html{
     flex-direction: row;
     flex-wrap: wrap;    
     margin-top: 20px;
-    justify-content: center;   
-    
+    justify-content: center;      
+}
+
+.times span{
+    margin-top: auto;
+    margin-bottom: auto;
+    color: white;
 }
 
 #start-time{
@@ -57,7 +67,31 @@ html{
     font-weight: bolder;
 }
 
+.move-down{
+    margin-top: 5%;
+}
+
 img{ 
     width: 2cm;
     height: 2cm;
+}
+
+@media (max-width:481px)  {
+    
+    #end-text{
+        display: none;
+    }
+    #start-text{
+        display: none;
+    }
+
+
+}
+
+@media (max-width:350px)  {
+    
+    .icon{
+        display: none;
+    }
+
 }
