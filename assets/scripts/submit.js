@@ -116,4 +116,10 @@ $(document).ready(function (){
         
     // }
 
+    $('.submit').click(function() {
+        localStorage.clear();
+        location.href = 'index.html';
+
+    })
+
 });
