@@ -26,6 +26,12 @@ html{
 
 .city-name{
     max-width: 50%;
+    font-weight: bolder;
+}
+
+.card-created {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .times{    
@@ -64,11 +70,16 @@ html{
 
 .float-left{
     float: left;
-    font-weight: bolder;
 }
 
 .move-down{
     margin-top: 5%;
+}
+
+.displayed-conditions{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 img{ 
