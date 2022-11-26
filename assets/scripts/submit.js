@@ -45,8 +45,10 @@ $(document).ready(function (){
         }) 
     };
 
+    displayWeatherAlert (cityName);
+
     function displayWeatherAlert (n){
-        weatherAlertUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=43.7001&lon=-79.4163&exclude=hourly,daily&appid=a0bbd7e7d2d686d902e4b6b8ef49689e"
+        weatherAlertUrl = "http://api.weatherapi.com/v1/forecast.json?key=d196a469c95d42e3baf10404222511&q=Toronto&days=7&aqi=yes&alerts=yes"
         fetch(weatherAlertUrl).then(function(response){
             if (response.ok){
                 response.json().then(function(data){
