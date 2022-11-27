@@ -1,6 +1,7 @@
 # weather-prepared
 Weather Prepared
-The project involves the implementaion of javascript to alow the user to generate a random password that matches their requirements
+The project involves the implementaion of Bulma css, javascript/jQuery, and 2 different APIs (openweathermap and weatherbit.io) to predict clothing
+the user should need for their next day of work. Or in the event of a storm, what precautions they must take.
 
 ## Installation
 
