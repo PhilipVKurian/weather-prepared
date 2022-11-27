@@ -5,9 +5,9 @@ the user should need for their next day of work. Or in the event of a storm, wha
 
 ## Installation
 
-N/A
+N/A.
 
-##User Story
+## User Story
 AS AN Outdoor worker
 I WANT to see weather and clothing required for my next shift
 SO THAT I can be well dressed and prepared for unpredictable weather.
