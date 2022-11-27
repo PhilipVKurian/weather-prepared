@@ -5,9 +5,11 @@ html{
     background: linear-gradient(to right, rgba(38, 80, 78, 0.747), rgb(39, 91, 121));
 }
 .hero {
-    object-fit: cover;
     height: 250px;    
-    background:url("https://ca-times.brightspotcdn.com/dims4/default/25e1c0c/2147483647/strip/true/crop/5184x3456+0+0/resize/1200x800!/quality/80/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F9e%2Faf%2F0d8ec73b408ba1fde362ef73570d%2F459362-et-0717-johnson-mwy-0066.JPG");
+    background:url("../image/logo-removebg-preview.png");
+    background-repeat: no-repeat;
+    background-position: center;
+
 }
 
 .box{
@@ -19,10 +21,12 @@ html{
 
 .city-name {
     display: block;
+    font-size: larger;
     margin: auto;
     width: 50%;
     padding: 10px;
-  }
+    text-align: center;
+}
 
 .city-name{
     max-width: 50%;
@@ -90,7 +94,22 @@ img{
     padding-bottom: 10%;
 }
 
+.article-alert{
+    margin-left: 15px;
+}
+
+@media (max-width:950px) {
+    .article-alert{
+        margin-top: 5px;
+        margin-left: 0;
+    }
+}
+
 @media (max-width:481px)  {
+
+    .hero{
+        background-size:contain;
+    }
     
     #end-text{
         display: none;
@@ -98,9 +117,18 @@ img{
     #start-text{
         display: none;
     }
+
+    .article-alert{
+        margin-top: 5px;
+        margin-left: 0;
+    }
 }
 
 @media (max-width:350px)  {
+
+    .hero{
+        background-size:contain;
+    }
     
     .icon{
         display: none;
@@ -110,6 +138,12 @@ img{
         margin: 0px;
         padding: 0px;
     }
+
+    .article-alert{
+        margin-top: 5px;
+        margin-left: 0;
+    }
+
     .footer-section {
       background: #151414;
       position: relative;

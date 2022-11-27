@@ -1,12 +1,14 @@
 $(document).ready(function (){
+    //checks for null value in local storage or if its empty
     if(localStorage.length == 0 || localStorage.getItem(0) == null){
-        window.location.href = "index.html"
+        window.location.href = "index.html";
     }
+    //variable declaration
     var cityName = localStorage.getItem(0);
     var startTime = localStorage.getItem(1);
     var startHour = startTime.slice(0,2);  
     var endTime = localStorage.getItem(2);    
-    var endHour = endTime.slice(0,2)
+    var endHour = endTime.slice(0,2);
     var currentDay = parseInt(dayjs().format('DD'));
     var arrayDay;
     var arrayTime;
@@ -14,7 +16,8 @@ $(document).ready(function (){
     var windSpeeds = [];
     var conditions = [];
     var times = [];
-    var icons = []
+    var icons = [];
+    var alertsDescription = [];
 
 
     //Display City and Start Time 
@@ -22,7 +25,7 @@ $(document).ready(function (){
     $('.conditions').find('start-end').text(startTime+ " -> " +endTime);
 
     displayWeather(cityName);
-
+    //Function gets the weather data for the shift and displays it by calling many other functions that handle specific tasks
     function displayWeather (n){
         weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q="+n+"&units=metric&appid=ee1d180c5b424d260ddb1d1ce6058778";
         fetch(weatherUrl).then(function(response){
@@ -38,28 +41,45 @@ $(document).ready(function (){
                             times.push(arrayTime);
                             icons.push(data.list[i].weather[0].icon);
                         }                        
-                    }
-                    console.log(temps, windSpeeds, conditions,icons,times);
+                    }                    
                     const averageTemp=temps.reduce((a,b)=>a+b,0)/temps.length;
                     clothingSuggestion(averageTemp);
                     toolSuggestion(conditions,windSpeeds);
-                    // umbrellaSuggestion(conditions);
                     getConditions(conditions, icons, times);
-
+                    displayWeatherAlert (cityName);
                 })
             }
         }) 
-    };
-
-    displayWeatherAlert (cityName);
-
+    }    
+    //if there are weatheralerts in the selected city they are rendered here
     function displayWeatherAlert (n){
-        weatherAlertUrl = "http://api.weatherapi.com/v1/forecast.json?key=d196a469c95d42e3baf10404222511&q="+n+"&days=7&aqi=yes&alerts=yes"
+        weatherAlertUrl = "https://api.weatherbit.io/v2.0/alerts?city="+n+"&key=c569e1e0140d46009e8130354da99ed7"
         fetch(weatherAlertUrl).then(function(response){
             if (response.ok){
                 response.json().then(function(data){
-                    console.log(data);
-
+                    try{
+                        $('.displayed-conditions').append(
+                            `<article class="message is-warning article-alert">
+                                <div class="message-header">
+                                    <p>Warning</p>                                
+                                </div>
+                                <div class="message-body">
+                                    `+ data.alerts[0].description +` 
+                                </div>
+                            </article>` 
+                        );
+                    }catch(err){
+                        $('.displayed-conditions').append(
+                            `<article class="message is-success article-alert">
+                                <div class="message-header">
+                                    <p>No Storms Detected</p>                                
+                                </div>
+                                <div class="message-body">
+                                    No Severe Weather Warnings reported by weatherbit.io in `+ n +`.
+                                </div>
+                            </article>`
+                        ); 
+                    }
                 })
             }
         })
@@ -108,7 +128,6 @@ $(document).ready(function (){
             </div>`;
         }
     }
-
    
     // umbrella is added when it's raining and not windy; 
     // raincoat is added when it's raining and windy (>20mph is windy );
@@ -140,7 +159,7 @@ $(document).ready(function (){
             `<img src="./assets/image/windcoat.png" alt="windcoat">`
         }
     }
-
+    //function that creates the html nodes for the different forecast hours and appends it to the DOM
     function getConditions(conditions,icons,times){
         for (i = 0; i < conditions.length; i++){
             var isPM;
@@ -166,15 +185,14 @@ $(document).ready(function (){
                     </div>
                 </button>
                 </div>` 
-            );
-            
+            );            
         }
     }
 
+    //Click listner for reseting local storage
     $('.submit').click(function() {
         localStorage.clear();
         location.href = 'index.html';
-
     })
 
-});
+})
