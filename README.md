@@ -1,7 +1,5 @@
 # weather-prepared
-
-# philip-kurian-password-generator
-Password Generator
+Weather Prepared
 The project involves the implementaion of javascript to alow the user to generate a random password that matches their requirements
 
 ## Installation
